@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,26 +21,31 @@ class Review
 
     /**
      * @ORM\Column(type="smallint")
+     * @Assert\Range(min=0, max=5)
      */
     private $rating;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
     private $body;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $author;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotNull
      */
     private $publicationDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="reviews")
+     * @Assert\NotNull
      */
     private $book;
 
